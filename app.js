@@ -27,10 +27,10 @@ app.post('/request', (req, res)=>{
 	const url = `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`;
 
 	console.log('sending request...');
+	getLocationWeather(url);
 	fetchGeocode(city);
 
-	//getWeather(url);
-	res.status(200).json('sent');
+	res.status(200).json('Request sent');
 
 });
 
@@ -39,7 +39,7 @@ app.post('/request', (req, res)=>{
 
 
 //fetch weather info from an external api
-function getWeather(url) {
+function getLocationWeather(url) {
 	request(url, function (err, response, body) {
 		  if(err){
 		    console.log('error:', error);
@@ -65,7 +65,7 @@ function fetchGeocode(locationName){
 	      const latLng = place.geometry['lat']+", " + place.geometry['lng'];
 
 	      //request the location time with the informationobtained
-	      getTime(latLng);
+	      getLocationTime(latLng);
 	    }
 	  } else if (data.status.code == 402) {
 	    console.log('free-trial daily limit reached');
@@ -80,9 +80,7 @@ function fetchGeocode(locationName){
 
 
 //get the current time of the location
-function getTime(latLng){
-
-console.log('LatLng', latLng);
+function getLocationTime(latLng){
 
 const loc = latLng;
 const targetDate = new Date(); // Current date/time of user computer
@@ -91,7 +89,7 @@ const apikey = process.env.GOOGLE_TIMEZONE_API_KEY;
 const apiUrl = 'https://maps.googleapis.com/maps/api/timezone/json?location=' + loc + '&timestamp=' + timestamp + '&key=' + apikey;
 const daysofweek = ['Sun', 'Mon', 'Tues', 'Wed', 'Thur', 'Fri', 'Sat', 'Sun'];
  
- console.log(apiUrl);
+ 
 
  fetch(apiUrl).then((resp) => resp.json()) // Transform the data into json
   .then(function(data) {
