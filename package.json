@@ -1,0 +1,27 @@
+{
+  "name": "lighthouse",
+  "version": "1.0.0",
+  "description": "An application for checking the current time and weather for any location",
+  "main": "app.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/michaelNgiri/Lighthouse.git"
+  },
+  "keywords": [
+    "weather",
+    "Lighthouse",
+    "check",
+    "time",
+    "location",
+    "info"
+  ],
+  "author": "Michael Ngiri",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/michaelNgiri/Lighthouse/issues"
+  },
+  "homepage": "https://github.com/michaelNgiri/Lighthouse#readme"
+}
