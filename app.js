@@ -27,7 +27,7 @@ app.post('/request', (req, res)=>{
 	const url = `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`;
 
 	console.log('sending request');
-
+	fetchGeocode(city);
 
 	//getWeather(url);
 	res.status(200).json('sent');
@@ -71,9 +71,42 @@ function fetchGeocode(locationName){
 	}).catch(error => {
 	  console.log('error', error.message);
 	});
-
-	return place.geometry;
 }
+
+
+//get the current time of the location
+function getTime(latLng){
+
+console.log('LatLng', latLng);
+
+const loc = latLng;
+const targetDate = new Date(); // Current date/time of user computer
+const timestamp = targetDate.getTime()/1000 + targetDate.getTimezoneOffset() * 60; // Current UTC date/time expressed as seconds since midnight, January 1, 1970 UTC
+const apikey = process.env.GOOGLE_TIMEZONE_API_KEY;
+const apiUrl = 'https://maps.googleapis.com/maps/api/timezone/json?location=' + loc + '&timestamp=' + timestamp + '&key=' + apikey;
+const daysofweek = ['Sun', 'Mon', 'Tues', 'Wed', 'Thur', 'Fri', 'Sat', 'Sun'];
+ 
+ console.log(apiUrl);
+
+ fetch(apiUrl).then((resp) => resp.json()) // Transform the data into json
+  .then(function(data) {
+    console.log(data);
+      const offsets = data.dstOffset * 1000 + data.rawOffset * 1000; // get DST and time zone offsets in milliseconds
+                let localdate = new Date(timestamp * 1000 + offsets); // Date object containing current time of target location
+                let refreshDate = new Date(); // get current date again to calculate time elapsed between targetDate and now
+                let millisecondselapsed = refreshDate - targetDate; // get amount of time elapsed between targetDate and now
+                localdate.setMilliseconds(localdate.getMilliseconds()+ millisecondselapsed); // update localdate to account for any time elapsed
+                setInterval(function(){
+                    localdate.setSeconds(localdate.getSeconds()+1);
+                    console.log('+++++++++++++++++++++++++++++++++++++');
+                    console.log('Time info');
+                    console.log('Local time', localdate.toLocaleTimeString() + ' (' + daysofweek[ localdate.getDay() ] + ')');
+                }, 10000)
+    });
+}
+
+
+
 
 
 
