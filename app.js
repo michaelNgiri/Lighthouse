@@ -29,7 +29,7 @@ app.post('/request', (req, res)=>{
 	console.log('sending request');
 
 
-	getWeather(url);
+	//getWeather(url);
 	res.status(200).json('sent');
 
 });
@@ -38,7 +38,7 @@ app.post('/request', (req, res)=>{
 
 
 
-
+//fetch weather info from an external api
 function getWeather(url) {
 	request(url, function (err, response, body) {
 		  if(err){
@@ -50,7 +50,30 @@ function getWeather(url) {
 		});
 }
 
+//convert the location to a Geocode Latitude and longitude(latLong)
+function fetchGeocode(locationName){
+	opencage.geocode({q: locationName}).then(data => {
+	  console.log(JSON.stringify(data));
+	  if (data.status.code == 200) {
+	    if (data.results.length > 0) {
+	      var place = data.results[0];
+	      console.log(place.formatted);
+	      console.log('lat-long', place.geometry);
+	      console.log('lat', place.geometry['lat']);
+	      console.log(place.annotations.timezone.name);
+	    }
+	  } else if (data.status.code == 402) {
+	    console.log('free-trial daily limit reached');
+	  } else {
+	    // other possible response codes:
+	    console.log('error', data.status.message);
+	  }
+	}).catch(error => {
+	  console.log('error', error.message);
+	});
 
+	return place.geometry;
+}
 
 
 
