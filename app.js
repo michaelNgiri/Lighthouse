@@ -22,13 +22,33 @@ app.get('/', (req, res)=>{
 
 
 
+app.post('/request', (req, res)=>{
+	const city = req.body.location_name;
+	const url = `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`;
+
+	console.log('sending request');
+
+
+	getWeather(url);
+	res.status(200).json('sent');
+
+});
 
 
 
 
 
 
-
+function getWeather(url) {
+	request(url, function (err, response, body) {
+		  if(err){
+		    console.log('error:', error);
+		  } else {
+			console.log('===============================================');
+		    console.log('weather info:', body);
+		  }
+		});
+}
 
 
 
