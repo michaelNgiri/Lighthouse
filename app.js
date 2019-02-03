@@ -26,7 +26,7 @@ app.post('/request', (req, res)=>{
 	const city = req.body.location_name;
 	const url = `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`;
 
-	console.log('sending request');
+	console.log('sending request...');
 	fetchGeocode(city);
 
 	//getWeather(url);
@@ -56,14 +56,15 @@ function fetchGeocode(locationName){
 	  console.log(JSON.stringify(data));
 	  if (data.status.code == 200) {
 	    if (data.results.length > 0) {
-	      var place = data.results[0];
+	      const place = data.results[0];
 	      console.log(place.formatted);
-	      console.log('lat-long', place.geometry);
-	      console.log('lat', place.geometry['lat']);
-	      console.log(place.annotations.timezone.name);
-	      console.log('fetching the current time of this location');
+	      console.log('Location Name:', place.formatted);
+	      console.log('lat-long:', place.geometry);
+	      console.log('Location Timezone:', place.annotations.timezone.name);
+	      console.log('fetching the current time of this location...');
 	      const latLng = place.geometry['lat']+", " + place.geometry['lng'];
-	      console.log(latLng);
+
+	      //request the location time with the informationobtained
 	      getTime(latLng);
 	    }
 	  } else if (data.status.code == 402) {
