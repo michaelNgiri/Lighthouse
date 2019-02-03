@@ -61,6 +61,10 @@ function fetchGeocode(locationName){
 	      console.log('lat-long', place.geometry);
 	      console.log('lat', place.geometry['lat']);
 	      console.log(place.annotations.timezone.name);
+	      console.log('fetching the current time of this location');
+	      const latLng = place.geometry['lat']+", " + place.geometry['lng'];
+	      console.log(latLng);
+	      getTime(latLng);
 	    }
 	  } else if (data.status.code == 402) {
 	    console.log('free-trial daily limit reached');
