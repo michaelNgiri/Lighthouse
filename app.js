@@ -12,6 +12,16 @@ require('dotenv').config();
 
 
 const port = process.env.PORT || 5000;
+let apiKey = process.env.OPENWEATHER_API_KEY;
+
+
+app.get('/', (req, res)=>{
+	res.setHeader('Content-Type', 'text/html');
+    res.status(200).sendFile(__dirname + "/" + "index.html");
+});
+
+
+
 
 
 
