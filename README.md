@@ -12,4 +12,4 @@ application repository url: https://github.com/michaelNgiri/Lighthouse.git
 3.start the development server:
       `npm start`
       
-4. open your browser and head to `http://localhost:3000` to preview the application
+4. open your browser and head to `http://localhost:5000` to preview the application
