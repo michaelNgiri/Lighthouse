@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Lighthouse</title>
+</head>
+<style type="text/css">
+	.container {
+    display: grid;
+    grid-template-columns: 100px 100px 100px;
+    grid-template-rows: 50px 50px;
+}
+</style>
+<body>
+	<div class="container">
+		<div class="location">
+			<form action="/request" method="post">
+				<label for="location_name">Location Name
+					<input type="text" name="location_name" id="location_name">
+				</label>
+				<br>
+
+				<label for="postal_code">Postal Code
+					<input type="text" name="postal_code" id="postal_code">
+				</label>
+
+				<button>Search</button>
+			</form>
+		</div>
+	</div>
+	
+</body>
+</html>

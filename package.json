@@ -1,0 +1,35 @@
+{
+  "name": "lighthouse",
+  "version": "1.0.0",
+  "description": "An application for checking the current time and weather for any location",
+  "main": "app.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/michaelNgiri/Lighthouse.git"
+  },
+  "keywords": [
+    "weather",
+    "Lighthouse",
+    "check",
+    "time",
+    "location",
+    "info"
+  ],
+  "author": "Michael Ngiri",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "dotenv": "^6.2.0",
+    "express": "^4.16.4",
+    "fs": "0.0.1-security",
+    "opencage-api-client": "^0.4.0",
+    "request": "^2.88.0"
+  },
+  "bugs": {
+    "url": "https://github.com/michaelNgiri/Lighthouse/issues"
+  },
+  "homepage": "https://github.com/michaelNgiri/Lighthouse#readme"
+}
