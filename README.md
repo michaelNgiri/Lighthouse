@@ -1,11 +1,15 @@
 # Lighthouse
 An application for checking the current time and weather for any location
+application repository url: https://github.com/michaelNgiri/Lighthouse.git
 
-### How to run 
- Application url: `https://github.com/michaelNgiri/Lighthouse.git`
+##How to run
 
-run `npm install` to install all application dependencies
+1. clone with `git clone https://github.com/michaelNgiri/Lighthouse.git`
 
-run `npm start` to start the application
-
-open your browser and head to `http://localhost:5000` to view the application
+2. Install dependencies:
+       `npm install`
+       
+3.start the development server:
+      `npm start`
+      
+4. open your browser and head to `http://localhost:5000` to preview the application
