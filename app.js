@@ -1,6 +1,5 @@
-const express = require('express');
+const app = require('express');
 const request = require('request');
-const app = express();
 const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: true }));
 const opencage = require('opencage-api-client');
@@ -30,13 +29,9 @@ app.post('/request', (req, res)=>{
 	getLocationWeather(url);
 	fetchGeocode(city);
 
-	res.status(200).json('Request sent');
+	res.status(201).json('Request sent');
 
 });
-
-
-
-
 
 //fetch weather info from an external api
 function getLocationWeather(url) {
@@ -54,7 +49,7 @@ function getLocationWeather(url) {
 function fetchGeocode(locationName){
 	opencage.geocode({q: locationName}).then(data => {
 	  console.log(JSON.stringify(data));
-	  if (data.status.code == 200) {
+	  if (data.status.code == 201) {
 	    if (data.results.length > 0) {
 	      const place = data.results[0];
 	      console.log(place.formatted);
@@ -90,7 +85,6 @@ const apiUrl = 'https://maps.googleapis.com/maps/api/timezone/json?location=' + 
 const daysofweek = ['Sun', 'Mon', 'Tues', 'Wed', 'Thur', 'Fri', 'Sat', 'Sun'];
  
  
-
  fetch(apiUrl).then((resp) => resp.json()) // Transform the data into json
   .then(function(data) {
     console.log(data);
